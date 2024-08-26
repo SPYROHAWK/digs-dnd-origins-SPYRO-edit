@@ -1,28 +1,32 @@
 package net.distantdig.digs_dnd_origins.datagen.TagGenerators;
 
-import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
-import net.minecraft.tag.TagKey;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
-public class ItemTagGenerator extends FabricTagProvider {
-    public ItemTagGenerator(FabricDataGenerator dataGenerator) {
-        super(dataGenerator, Registry.ITEM);
+import java.util.concurrent.CompletableFuture;
+
+public class ItemTagGenerator extends FabricTagProvider<Item> {
+    public ItemTagGenerator(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+        super(output, RegistryKeys.ITEM, registriesFuture);
     }
-    private static final TagKey<Item> DROW_MELEE_WEAPONS = TagKey.of(Registry.ITEM_KEY, new Identifier("digs_dnd_origins", "drow_melee_weapons"));
-    private static final TagKey<Item> DROW_RANGED_WEAPONS = TagKey.of(Registry.ITEM_KEY, new Identifier("digs_dnd_origins", "drow_ranged_weapons"));
-    private static final TagKey<Item> DWARF_MELEE_WEAPONS = TagKey.of(Registry.ITEM_KEY, new Identifier("digs_dnd_origins", "dwarven_combat_training_weapons"));
-    private static final TagKey<Item> ELF_MELEE_WEAPONS = TagKey.of(Registry.ITEM_KEY, new Identifier("digs_dnd_origins", "elf_melee_weapons"));
-    private static final TagKey<Item> ELF_RANGED_WEAPONS = TagKey.of(Registry.ITEM_KEY, new Identifier("digs_dnd_origins", "elf_ranged_weapons"));
+    private static final TagKey<Item> DROW_MELEE_WEAPONS = TagKey.of(Registries.ITEM.getKey(), new Identifier("digs_dnd_origins", "drow_melee_weapons"));
+    private static final TagKey<Item> DROW_RANGED_WEAPONS = TagKey.of(Registries.ITEM.getKey(), new Identifier("digs_dnd_origins", "drow_ranged_weapons"));
+    private static final TagKey<Item> DWARF_MELEE_WEAPONS = TagKey.of(Registries.ITEM.getKey(), new Identifier("digs_dnd_origins", "dwarven_combat_training_weapons"));
+    private static final TagKey<Item> ELF_MELEE_WEAPONS = TagKey.of(Registries.ITEM.getKey(), new Identifier("digs_dnd_origins", "elf_melee_weapons"));
+    private static final TagKey<Item> ELF_RANGED_WEAPONS = TagKey.of(Registries.ITEM.getKey(), new Identifier("digs_dnd_origins", "elf_ranged_weapons"));
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg) {
         getOrCreateTagBuilder(DROW_MELEE_WEAPONS)
                 .addOptionalTag(new Identifier("c", "swords"))
-                .addOptionalTag(new Identifier("c", "rapiers"))
+
                 .add(Items.WOODEN_SWORD)
                 .add(Items.STONE_SWORD)
                 .add(Items.GOLDEN_SWORD)
@@ -32,10 +36,12 @@ public class ItemTagGenerator extends FabricTagProvider {
 
         getOrCreateTagBuilder(DROW_RANGED_WEAPONS)
                 .addOptionalTag(new Identifier("c", "crossbows"))
+
                 .add(Items.CROSSBOW);
 
         getOrCreateTagBuilder(DWARF_MELEE_WEAPONS)
                 .addOptionalTag(new Identifier("c", "axes"))
+
                 .add(Items.WOODEN_AXE)
                 .add(Items.STONE_AXE)
                 .add(Items.GOLDEN_AXE)
@@ -45,6 +51,7 @@ public class ItemTagGenerator extends FabricTagProvider {
 
         getOrCreateTagBuilder(ELF_MELEE_WEAPONS)
                 .addOptionalTag(new Identifier("c", "swords"))
+
                 .add(Items.WOODEN_SWORD)
                 .add(Items.STONE_SWORD)
                 .add(Items.GOLDEN_SWORD)
@@ -54,6 +61,7 @@ public class ItemTagGenerator extends FabricTagProvider {
 
         getOrCreateTagBuilder(ELF_RANGED_WEAPONS)
                 .addOptionalTag(new Identifier("c", "bows"))
+
                 .add(Items.BOW);
     }
 }
