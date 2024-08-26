@@ -19,8 +19,9 @@ public class ItemTagGenerator extends FabricTagProvider {
     private static final TagKey<Item> ELF_RANGED_WEAPONS = TagKey.of(Registry.ITEM_KEY, new Identifier("digs_dnd_origins", "elf_ranged_weapons"));
 
     @Override
-    protected void generateTags() {
+    protected void configure(RegistryWrapper.WrapperLookup arg) {
         getOrCreateTagBuilder(DROW_MELEE_WEAPONS)
+                .addOptionalTag(new Identifier("c", "swords"))
                 .add(Items.WOODEN_SWORD)
                 .add(Items.STONE_SWORD)
                 .add(Items.GOLDEN_SWORD)
@@ -29,9 +30,11 @@ public class ItemTagGenerator extends FabricTagProvider {
                 .add(Items.NETHERITE_SWORD);
 
         getOrCreateTagBuilder(DROW_RANGED_WEAPONS)
+                .addOptionalTag(new Identifier("c", "crossbows"))
                 .add(Items.CROSSBOW);
 
         getOrCreateTagBuilder(DWARF_MELEE_WEAPONS)
+                .addOptionalTag(new Identifier("c", "axes"))
                 .add(Items.WOODEN_AXE)
                 .add(Items.STONE_AXE)
                 .add(Items.GOLDEN_AXE)
@@ -40,6 +43,7 @@ public class ItemTagGenerator extends FabricTagProvider {
                 .add(Items.NETHERITE_AXE);
 
         getOrCreateTagBuilder(ELF_MELEE_WEAPONS)
+                .addOptionalTag(new Identifier("c", "swords"))
                 .add(Items.WOODEN_SWORD)
                 .add(Items.STONE_SWORD)
                 .add(Items.GOLDEN_SWORD)
@@ -48,6 +52,7 @@ public class ItemTagGenerator extends FabricTagProvider {
                 .add(Items.NETHERITE_SWORD);
 
         getOrCreateTagBuilder(ELF_RANGED_WEAPONS)
+                .addOptionalTag(new Identifier("c", "bows"))
                 .add(Items.BOW);
     }
 }
