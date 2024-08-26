@@ -22,6 +22,7 @@ public class ItemTagGenerator extends FabricTagProvider {
     protected void configure(RegistryWrapper.WrapperLookup arg) {
         getOrCreateTagBuilder(DROW_MELEE_WEAPONS)
                 .addOptionalTag(new Identifier("c", "swords"))
+                .addOptionalTag(new Identifier("c", "rapiers"))
                 .add(Items.WOODEN_SWORD)
                 .add(Items.STONE_SWORD)
                 .add(Items.GOLDEN_SWORD)
